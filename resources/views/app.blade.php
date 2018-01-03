@@ -9,8 +9,11 @@
 	<link REL="icon" HREF="/images/fav.png">
 
 	<meta name="author" content="Harris Christiansen">
-	<meta name="description" content="HTML5 Boilerplate - Harris Christiansen">
-	<meta name="keywords" content="harris, christiansen, html5, boilerplate">
+	<meta name="description" content="Inventory Catalog - Created by Harris Christiansen">
+	<meta name="keywords" content="inventory, catalog, personal, tracker, list, listing, record, log, archive, belongings, document, posessions, goods, property, assets, things, harris, christiansen, harrischristiansen, html5, php, laravel">
+	
+	<!-- CSRF Token -->
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<!-- BValidator -->
 	<link href="/css/plugins/bvalidator.css" rel="stylesheet" type="text/css">
@@ -37,7 +40,7 @@
 
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/">{{ env('APP_NAME') }}</a>
+		<a class="navbar-brand" href="{{ route('home') }}">{{ env('APP_NAME') }}</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -47,10 +50,10 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="/">Home</a>
+						<a class="dropdown-item {{ Request::route()->named('home') ? 'active':'' }}" href="{{ route('home') }}">Home</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="/list">List</a>
-						<a class="dropdown-item active" href="/object">Object</a>
+						<a class="dropdown-item {{ Request::route()->named('list') ? 'active':'' }}" href="{{ route('list') }}">List</a>
+						<a class="dropdown-item {{ Request::route()->named('object') ? 'active':'' }}" href="{{ route('object') }}">Object</a>
 					</div>
 				</li>
 			</ul>

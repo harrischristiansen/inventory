@@ -6,14 +6,6 @@
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', function () {
-    return view('pages/home');
-});
-
-Route::get('/list', function () {
-    return view('pages/list');
-});
-
-Route::get('/object', function () {
-    return view('pages/object');
-});
+Route::get('/', 'InventoryController@index')->name('home');
+Route::get('/list', 'InventoryController@getList')->name('list');
+Route::get('/object', 'InventoryController@getObject')->name('object');
