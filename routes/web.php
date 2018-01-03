@@ -7,5 +7,13 @@
 */
 
 Route::get('/', 'InventoryController@index')->name('home');
-Route::get('/list', 'InventoryController@getList')->name('list');
-Route::get('/object', 'InventoryController@getObject')->name('object');
+Route::group(['prefix' => 'items'], function () {
+	Route::get('', 'InventoryController@getList')->name('list');
+	Route::get('create', 'InventoryController@getItemCreate')->name('createItem');
+	Route::post('create', 'InventoryController@postItem')->name('createItem-post');
+	Route::group(['prefix' => '{item}'], function () {
+		Route::get('', 'InventoryController@getItem')->name('item');
+		Route::get('edit', 'InventoryController@getItemEdit')->name('editItem');
+		Route::post('edit', 'InventoryController@postItem')->name('editItem-post');
+	});
+});

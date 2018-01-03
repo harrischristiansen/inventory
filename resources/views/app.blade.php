@@ -53,7 +53,7 @@
 						<a class="dropdown-item {{ Request::route()->named('home') ? 'active':'' }}" href="{{ route('home') }}">Home</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item {{ Request::route()->named('list') ? 'active':'' }}" href="{{ route('list') }}">List</a>
-						<a class="dropdown-item {{ Request::route()->named('object') ? 'active':'' }}" href="{{ route('object') }}">Object</a>
+						<a class="dropdown-item {{ Request::route()->named('createItem') ? 'active':'' }}" href="{{ route('createItem') }}">Create Item</a>
 					</div>
 				</li>
 			</ul>

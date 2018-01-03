@@ -10,6 +10,10 @@ main {
 	padding-top: 30px;
 }
 
+.no-bottom-margin {
+	margin-bottom: 0px;
+}
+
 /* ------------------------ Buttons ------------------------- */
 
 .btn-xl {
@@ -19,9 +23,13 @@ main {
 	border-radius: .4rem;
 }
 
+.btn:hover {
+	cursor: pointer;
+}
+
 /* ------------------------ Tables ------------------------- */
 
-.table-clickable tbody tr:hover {
+.table-links tbody tr:hover {
 	cursor: pointer;
 }
 

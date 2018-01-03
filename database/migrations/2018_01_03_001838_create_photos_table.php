@@ -16,10 +16,11 @@ class CreatePhotosTable extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->increments('id');
             $table->text('filename');
-            $table->integer('object_id')->foreign()->references('id')->on('objects');
+            $table->integer('item_id')->foreign()->references('id')->on('items');
             $table->string('title')->nullable();
             $table->string('ipaddr');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

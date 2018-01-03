@@ -17,6 +17,14 @@ $(document).ready(function() {
 	$("#alert").click(function(evt) {
 		displayMessage("Example alert!");
 	});
+	
+	// Turn Table Rows Into Links
+	$('.table-links tbody tr').click(function() {
+		var url = $(this).find("a").attr("href");
+		if (url) {
+			window.location = url;
+		}
+	});
 });
 
 function displayMessage(msg, isFailure=false) {
