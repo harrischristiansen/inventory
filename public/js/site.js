@@ -29,8 +29,8 @@ $(document).ready(function() {
 
 function displayMessage(msg, isFailure=false) {
 	if (isFailure) {
-		$('<div class="alert alert-danger" role="alert">'+msg+"</div>").appendTo('#msgs').delay(2200).slideUp(300);
+		$('<div class="alert alert-danger" role="alert">'+msg+"</div>").appendTo('#alerts').delay(5000).slideUp(300);
 	} else {
-		$('<div class="alert alert-success" role="alert">'+msg+"</div>").appendTo('#msgs').delay(2200).slideUp(300);
+		$('<div class="alert alert-success" role="alert">'+msg+"</div>").appendTo('#alerts').delay(5000).slideUp(300);
 	}
 }

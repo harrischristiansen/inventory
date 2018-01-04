@@ -1,13 +1,16 @@
 <?php
 /*
-	Inventory Controller
+	Inventory Controller - github.com/harrischristiansen/inventory
 	File created by Harris Christiansen (HarrisChristiansen.com)
 */
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\EditItemRequest;
 use App\Models\Item;
+use App\Models\Photo;
+use Carbon\Carbon;
 
 class InventoryController extends Controller {
 	
@@ -15,12 +18,12 @@ class InventoryController extends Controller {
 		return view('pages.home');
 	}
 	
+	// --------------- Items ---------------
+	
 	public function getList() {
 		$items = Item::all();
 		return view('pages.item.list', compact('items'));
 	}
-	
-	// --------------- Items ---------------
 	
 	public function getItem(Item $item) {
 		return view('pages.item.item', compact('item'));
@@ -36,7 +39,7 @@ class InventoryController extends Controller {
 		return view('pages.item.edit', compact('item'));
 	}
 	
-	public function postItem(Request $request, Item $item=null) {
+	public function postItem(EditItemRequest $request, Item $item=null) {
 		// Get Inputs
 		$name = $request->input("name");
 		$description = $request->input("description");
@@ -49,7 +52,7 @@ class InventoryController extends Controller {
 			$item = new Item();
 		}
 		
-		// Update Classroom
+		// Update Item
 		$item->name = $name;
 		$item->description = $description;
 		if ($quantity > 1) {
@@ -60,5 +63,41 @@ class InventoryController extends Controller {
 		$item->save();
 		
 		return redirect()->route('item', [$item])->with('alert', "Success! Saved item: ".$name);
+	}
+	
+	// --------------- Photos ---------------
+	
+	public function postUploadPhoto(Request $request, Item $item) {
+		$title = $request->input("title");
+		$filename = Carbon::now()->toDateTimeString();
+		
+		// Create Photo DB Record
+		$photo = new Photo();
+		$photo->filename = $filename;
+		$photo->title = $title;
+		$photo->item_id = $item->id;
+		$photo->ipaddr = $request->ip();
+		$photo->save();
+		
+		// Upload File
+		if ($request->hasFile('file')) {
+			$file = $request->file("file");
+			
+			if ($file->isValid()) {
+				$extension = strtolower($file->getClientOriginalExtension());
+				
+				if ($extension=="jpg" || $extension=="jpeg" || $extension=="png") {
+					$photo->filename = $photo->filename.".".$extension;
+					$photo->save();
+					
+					$uploadPath = 'photos/';
+					$file->move($uploadPath, $photo->filename);
+				} else {
+					return redirect()->route('uploadPhoto', [$item])->with('alert', "Error: Invalid File Type!");
+				}
+			}
+		}
+		
+		return redirect()->route('item', [$item])->with('alert', "Success! Added photo: ".$title." to item: ".$item->name);
 	}
 }

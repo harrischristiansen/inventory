@@ -38,7 +38,7 @@
 
 </head><body>
 
-	<!-- Navbar -->
+	<!-- ========== Navbar ========== -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="{{ route('home') }}">{{ env('APP_NAME') }}</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,6 +63,15 @@
 			</form>
 		</div>
 	</nav>
+	
+	@if (session()->has('alert'))
+	<!-- ========== Alerts ========== -->
+	<div id="alerts" class="container mt-3">
+		<div class="alert {{ session()->get('alert-class', 'alert-success') }}" role="alert">{{ session()->get('alert') }}</div>
+		<?php session()->forget('alert'); ?>
+	</div>
+	@endif
+	
 	
 	<!-- ========== Content ========== -->
 	@yield('content')

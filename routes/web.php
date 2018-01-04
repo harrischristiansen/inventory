@@ -2,7 +2,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Web Routes - Inventory - github.com/harrischristiansen/inventory
 |--------------------------------------------------------------------------
 */
 
@@ -15,5 +15,6 @@ Route::group(['prefix' => 'items'], function () {
 		Route::get('', 'InventoryController@getItem')->name('item');
 		Route::get('edit', 'InventoryController@getItemEdit')->name('editItem');
 		Route::post('edit', 'InventoryController@postItem')->name('editItem-post');
+		Route::post('upload', 'InventoryController@postUploadPhoto')->name('uploadPhoto');
 	});
 });

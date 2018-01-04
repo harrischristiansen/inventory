@@ -33,4 +33,13 @@ main {
 	cursor: pointer;
 }
 
+/* ------------------------ Photo Carousel ------------------------- */
+
+.carousel .carousel-item img {
+  max-height: 768px;
+  min-width: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* ------------------------ End ------------------------- */

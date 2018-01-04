@@ -17,5 +17,10 @@ class Photo extends Model
     {
         return $this->belongsTo('App\Models\Item');
     }
+    
+    public function url()
+    {
+	    return "/photos/".$this->filename;
+    }
 
 }
