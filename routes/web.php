@@ -18,3 +18,7 @@ Route::group(['prefix' => 'items'], function () {
 		Route::post('upload', 'InventoryController@postUploadPhoto')->name('uploadPhoto');
 	});
 });
+Route::group(['prefix' => 'download'], function () {
+	Route::get('csv', 'InventoryController@getDownloadCSV')->name('downloadCSV');
+	Route::get('xlsx', 'InventoryController@getDownloadXLSX')->name('downloadXLSX');
+});

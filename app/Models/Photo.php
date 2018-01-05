@@ -1,6 +1,6 @@
 <?php
 /*
-	Photo Model
+	Inventory Photo Model - github.com/harrischristiansen/inventory
 	File created by Harris Christiansen (HarrisChristiansen.com)
 */
 

@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\EditItemRequest;
+use App\Http\Requests\UpdatePhotoRequest;
 use App\Models\Item;
 use App\Models\Photo;
 use Carbon\Carbon;
@@ -67,9 +68,9 @@ class InventoryController extends Controller {
 	
 	// --------------- Photos ---------------
 	
-	public function postUploadPhoto(Request $request, Item $item) {
+	public function postUploadPhoto(UpdatePhotoRequest $request, Item $item) {
 		$title = $request->input("title");
-		$filename = Carbon::now()->toDateTimeString();
+		$filename = $item->id."_".Carbon::now()->toDateTimeString();
 		
 		// Create Photo DB Record
 		$photo = new Photo();
@@ -99,5 +100,17 @@ class InventoryController extends Controller {
 		}
 		
 		return redirect()->route('item', [$item])->with('alert', "Success! Added photo: ".$title." to item: ".$item->name);
+	}
+	
+	// --------------- Downloads ---------------
+	
+	public function getDownloadCSV() {
+		$items = Item::all();
+		
+		return redirect()->route('home')->with('alert', "Error: Feature not complete");
+	}
+	
+	public function getDownloadXLSX() {
+		return redirect()->route('home')->with('alert', "Error: Feature not complete");
 	}
 }

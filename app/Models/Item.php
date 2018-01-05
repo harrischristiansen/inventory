@@ -1,6 +1,6 @@
 <?php
 /*
-	Item Model
+	Item Model - github.com/harrischristiansen/inventory
 	File created by Harris Christiansen (HarrisChristiansen.com)
 */
 
@@ -16,6 +16,11 @@ class Item extends Model
 	public function photos()
 	{
 		return $this->hasMany('App\Models\Photo');
+	}
+	
+	public function itemName()
+	{
+		return $this->name ?: "Unnamed Item";
 	}
 	
 	public function editURL()

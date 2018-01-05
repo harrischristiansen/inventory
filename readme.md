@@ -2,7 +2,7 @@
 
 ## Synopsis
 
-Inventory is a web application built with [Laravel](https://laravel.com) for maintaining a catalog of items, with notes, attributes and photos.  
+[WIP] Inventory is a web application built with [Laravel](https://laravel.com) for maintaining a catalog of items, with notes, attributes and photos.  
 
 ## Getting Started - Installation
 

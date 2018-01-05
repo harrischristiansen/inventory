@@ -47,13 +47,17 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link {{ Request::route()->named('list') ? 'active':'' }}" href="{{ route('list') }}" role="button" aria-expanded="false" aria-label="List">List</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link {{ Request::route()->named('createItem') ? 'active':'' }}" href="{{ route('createItem') }}" role="button" aria-expanded="false" aria-label="Add New Item">Add New Item</a>
+				</li>
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Download</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item {{ Request::route()->named('home') ? 'active':'' }}" href="{{ route('home') }}">Home</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item {{ Request::route()->named('list') ? 'active':'' }}" href="{{ route('list') }}">List</a>
-						<a class="dropdown-item {{ Request::route()->named('createItem') ? 'active':'' }}" href="{{ route('createItem') }}">Create Item</a>
+						<a class="dropdown-item" href="{{ route('downloadCSV') }}">Download CSV</a>
+						<a class="dropdown-item" href="{{ route('downloadXLSX') }}">Download XLSX</a>
 					</div>
 				</li>
 			</ul>

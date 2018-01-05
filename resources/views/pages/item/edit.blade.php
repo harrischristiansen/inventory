@@ -29,6 +29,8 @@ Edit Item -
 			<input type="submit" value="Save" class="btn btn-primary">
 		</div>
 	</form>
+	
+	@include('pages.item.photoCarousel')
 </main>
 
 @stop
