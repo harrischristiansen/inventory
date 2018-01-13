@@ -19,7 +19,7 @@ Categories -
 			<tbody>
 				@foreach ($categories as $category)
 				<tr>
-					<td><a href="#">{{ $category->name }}</a></td>
+					<td><a href="{{ route('category', [$category]) }}">{{ $category->name }}</a></td>
 					<td>{{ count($category->items) }}</td>
 				</tr>
 				@endforeach

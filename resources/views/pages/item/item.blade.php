@@ -13,7 +13,7 @@ Item - {{ $item->itemName() }} -
 		<ol class="breadcrumb no-bottom-margin">
 			<li class="breadcrumb-item"><a href="{{ route('list') }}">Items</a></li>
 			@if ($item->category)
-			<li class="breadcrumb-item"><a href="#">{{ $item->category->name }}</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('category', [$item->category]) }}">{{ $item->category->name }}</a></li>
 			@endif
 			<li class="breadcrumb-item active" aria-current="page">{{ $item->itemName() }}</li>
 		</ol>
@@ -25,7 +25,7 @@ Item - {{ $item->itemName() }} -
 		<ul class="list-group list-group-flush">
 			<li class="list-group-item"><b>Quantity:</b> {{ $item->quantity }}</li>
 			@if ($item->category)
-			<li class="list-group-item"><b>Category:</b> {{ $item->category->name }}</li>
+			<li class="list-group-item"><b>Category:</b> <a href="{{ route('category', [$item->category]) }}">{{ $item->category->name }}</a></li>
 			@endif
 			@if ($item->url)
 			<li class="list-group-item"><b>URL:</b> <a href="{{ $item->url }}">{{ $item->url }}</a></li>

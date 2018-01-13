@@ -22,6 +22,9 @@ Route::group(['prefix' => 'categories'], function () {
 	Route::get('', 'CategoryController@getList')->name('categories');
 	Route::post('create', 'CategoryController@postCategoryCreate')->name('createCategory');
 	Route::get('typeahead', 'CategoryController@getTypeahead')->name('categoryTypeahead');
+	Route::group(['prefix' => '{category}'], function () {
+		Route::get('', 'CategoryController@getCategory')->name('category');
+	});
 });
 Route::group(['prefix' => 'download'], function () {
 	Route::get('csv', 'InventoryController@getDownloadCSV')->name('downloadCSV');
