@@ -10,9 +10,11 @@ To get your own copy of Inventory running, follow the [Getting Started Instructi
 
 ## Features
 
-- [ ] Item Catalog
-	- [ ] Item Name, Description, Category, URL
-	- [ ] Item Photos
+- [X] Item Catalog
+	- [X] Item Name, Description, Quantity, Category, URL
+	- [X] Item Photos
+	- [ ] Mass Upload Photos
+	- [ ] Mass Name Unnamed Items
 - [ ] Export to CSV
 - [ ] Export to Excel
 

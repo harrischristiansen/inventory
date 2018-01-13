@@ -1,7 +1,7 @@
 @extends("app")
 
 @section("page-title")
-Edit Item - 
+{{ $item->id==0 ? "Add New Item" : "Edit Item: " }} - 
 @stop
 
 @section("content")
@@ -22,7 +22,7 @@ Edit Item -
 		</div>
 		<ul class="list-group list-group-flush">
 			<li class="list-group-item"><b>Quantity:</b> <input type="text" name="quantity" placeholder="Quantity" class="form-control" data-bvalidator="number" value="{{ $item->quantity }}"></li>
-			<li class="list-group-item"><b>Category:</b> <input type="text" name="category" placeholder="Category" class="form-control" value="{{ $item->category }}"></li>
+			<li class="list-group-item"><b>Category:</b> <input type="text" name="category" placeholder="Category" class="form-control categoriesTypeahead" value="{{ $item->category ? $item->category->name : "" }}"></li>
 			<li class="list-group-item"><b>URL:</b> <input type="text" name="url" placeholder="URL" class="form-control" data-bvalidator="url" value="{{ $item->url }}"></li>
 		</ul>
 		<div class="card-body">

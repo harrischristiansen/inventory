@@ -53,6 +53,9 @@
 				<li class="nav-item">
 					<a class="nav-link {{ Request::route()->named('createItem') ? 'active':'' }}" href="{{ route('createItem') }}" role="button" aria-expanded="false" aria-label="Add New Item">Add New Item</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link {{ Request::route()->named('categories') ? 'active':'' }}" href="{{ route('categories') }}" role="button" aria-expanded="false" aria-label="Categories">Categories</a>
+				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Download</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">

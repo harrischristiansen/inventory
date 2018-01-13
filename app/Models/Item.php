@@ -18,6 +18,11 @@ class Item extends Model
 		return $this->hasMany('App\Models\Photo');
 	}
 	
+	public function category()
+	{
+		return $this->belongsTo('App\Models\Category');
+	}
+	
 	public function itemName()
 	{
 		return $this->name ?: "Unnamed Item";

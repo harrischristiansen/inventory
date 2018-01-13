@@ -18,6 +18,11 @@ Route::group(['prefix' => 'items'], function () {
 		Route::post('upload', 'InventoryController@postUploadPhoto')->name('uploadPhoto');
 	});
 });
+Route::group(['prefix' => 'categories'], function () {
+	Route::get('', 'CategoryController@getList')->name('categories');
+	Route::post('create', 'CategoryController@postCategoryCreate')->name('createCategory');
+	Route::get('typeahead', 'CategoryController@getTypeahead')->name('categoryTypeahead');
+});
 Route::group(['prefix' => 'download'], function () {
 	Route::get('csv', 'InventoryController@getDownloadCSV')->name('downloadCSV');
 	Route::get('xlsx', 'InventoryController@getDownloadXLSX')->name('downloadXLSX');

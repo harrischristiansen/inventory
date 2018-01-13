@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\EditItemRequest;
 use App\Http\Requests\UpdatePhotoRequest;
+use App\Models\Category;
 use App\Models\Item;
 use App\Models\Photo;
 use Carbon\Carbon;
@@ -45,7 +46,7 @@ class InventoryController extends Controller {
 		$name = $request->input("name");
 		$description = $request->input("description");
 		$quantity = $request->input("quantity");
-		$category = $request->input("category");
+		$categoryName = $request->input("category");
 		$url = $request->input("url");
 		
 		// Create Item if necessary
@@ -59,7 +60,12 @@ class InventoryController extends Controller {
 		if ($quantity > 1) {
 			$item->quantity = $quantity;
 		}
-		$item->category = $category;
+		if (strlen($categoryName) > 2) {
+			$category = Category::firstOrCreate(['name' => $categoryName]);
+			$item->category_id = $category->id;
+		} else {
+			$item->category_id = null;
+		}
 		$item->url = $url;
 		$item->save();
 		

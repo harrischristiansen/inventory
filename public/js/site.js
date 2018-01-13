@@ -1,7 +1,6 @@
 /*
-	@ Harris Christiansen (Harris@HarrisChristiansen.com)
-	2016-09-18
-	Project: HTML5 Boilerplate
+	@ Harris Christiansen (code@HarrisChristiansen.com)
+	Project: Inventory - github.com/harrischristiansen/inventory
 */
 
 
@@ -24,6 +23,11 @@ $(document).ready(function() {
 		if (url) {
 			window.location = url;
 		}
+	});
+	
+	$(".categoriesTypeahead").autocomplete({
+		source: "/categories/typeahead",
+		minLength: 2,
 	});
 });
 
