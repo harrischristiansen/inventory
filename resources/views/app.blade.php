@@ -71,11 +71,16 @@
 		</div>
 	</nav>
 	
-	@if (session()->has('alert'))
+	@if (session()->has('alert') || count($errors))
 	<!-- ========== Alerts ========== -->
 	<div id="alerts" class="container mt-3">
+		@if (session()->has('alert'))
 		<div class="alert {{ session()->get('alert-class', 'alert-success') }}" role="alert">{{ session()->get('alert') }}</div>
 		<?php session()->forget('alert'); ?>
+		@endif
+		@foreach ($errors->all() as $error)
+		<div class="alert alert-danger" role="alert">{{ $error }}</div>
+		@endforeach
 	</div>
 	@endif
 	

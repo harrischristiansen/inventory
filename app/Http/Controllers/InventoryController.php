@@ -8,11 +8,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\EditItemRequest;
-use App\Http\Requests\UpdatePhotoRequest;
+use App\Http\Requests\UploadPhotoRequest;
 use App\Models\Category;
 use App\Models\Item;
 use App\Models\Photo;
 use Carbon\Carbon;
+use Image;									// http://image.intervention.io
 
 class InventoryController extends Controller {
 	
@@ -74,13 +75,12 @@ class InventoryController extends Controller {
 	
 	// --------------- Photos ---------------
 	
-	public function postUploadPhoto(UpdatePhotoRequest $request, Item $item) {
+	public function postUploadPhoto(UploadPhotoRequest $request, Item $item) {
 		$title = $request->input("title");
 		$filename = $item->id."_".Carbon::now()->toDateTimeString();
 		
 		// Create Photo DB Record
 		$photo = new Photo();
-		$photo->filename = $filename;
 		$photo->title = $title;
 		$photo->item_id = $item->id;
 		$photo->ipaddr = $request->ip();
@@ -94,10 +94,14 @@ class InventoryController extends Controller {
 				$extension = strtolower($file->getClientOriginalExtension());
 				
 				if ($extension=="jpg" || $extension=="jpeg" || $extension=="png") {
-					$photo->filename = $photo->filename.".".$extension;
+					$uploadPath = 'photos/';
+					$photo->filename = $filename.".".$extension;
+					$photo->iconname = $filename."_icon.".$extension;
 					$photo->save();
 					
-					$uploadPath = 'photos/';
+					Image::make($file)->resize(null, 200, function ($constraint) {
+						$constraint->aspectRatio();
+					})->save(public_path($uploadPath.$photo->iconname));
 					$file->move($uploadPath, $photo->filename);
 				} else {
 					return redirect()->route('uploadPhoto', [$item])->with('alert', "Error: Invalid File Type!");

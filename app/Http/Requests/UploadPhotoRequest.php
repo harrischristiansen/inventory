@@ -19,7 +19,7 @@ class UploadPhotoRequest extends FormRequest
     {
         return [
             'title'	=> 'max:255',
-            'file'	=> 'file,required',
+            'file'	=> 'required|file',
         ];
     }
 }

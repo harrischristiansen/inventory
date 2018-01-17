@@ -22,5 +22,10 @@ class Photo extends Model
     {
 	    return "/photos/".$this->filename;
     }
+    
+    public function iconURL()
+    {
+	    return "/photos/".$this->iconname;
+    }
 
 }

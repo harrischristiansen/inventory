@@ -20,9 +20,9 @@ class EditItemRequest extends FormRequest
         return [
             'name'      	=> 'required|max:255',
             'description'   => 'max:5000',
-            'quantity'    	=> 'numeric',
+            'quantity'    	=> 'nullable|numeric',
             'category'    	=> 'max:255',
-            'url'   		=> 'url',
+            'url'   		=> 'nullable|url',
         ];
     }
 }
